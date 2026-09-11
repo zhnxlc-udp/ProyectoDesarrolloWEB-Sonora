@@ -38,3 +38,19 @@ th, td {
 form{
     text-align: right;
 }
+
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: system-ui;
+}
+
+.Logo{
+    padding: 30px;
+    background:rgba(255, 0, 0, 0.568) ;
+    color: aliceblue;
+}
+
+input {
+    color: rgb(54, 29, 194);
+}
