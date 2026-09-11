@@ -1,0 +1,40 @@
+table {
+	width: 100%;
+	border-collapse: collapse;
+	font-family: Arial, sans-serif;
+    margin: 20px 0;
+    background-color: white;
+}
+
+body {
+ 	background-color: #C7FFF5;
+  	font-family: Arial, sans-serif;
+}
+
+.log-in {
+	display: flex;
+	gap: 20px;                      
+}
+
+.barra-navegacion {
+    display: flex;
+	justify-content: space-between; 
+	align-items: center;            
+	padding: 15px 30px;
+	font-family: Arial, sans-serif;
+}
+
+table{
+    width: 90%;          
+	margin: 40px auto;   
+}
+
+th, td {
+    padding: 15px 20px; 
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}
+
+form{
+    text-align: right;
+}
