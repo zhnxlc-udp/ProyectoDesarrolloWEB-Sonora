@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/jpg" href="logo.png">
+	<link rel="stylesheet" href="style.css">
+	<title>SONORA | Galería musical</title>
+</head>
+
+<body>
+	<header class="barra-navegacion">
+		<div class="logo">		
+			<img src="logo.png" width="10%" height="10%">
+			<h1>Sonora | Galería musical</h1>
+		</div>
+		<div class="log-in">
+			<form>
+            	<p>Nombre de usuario: <input type="text" name="username" maxlength="15" minlength="6" required></p>
+            	<p>Contraseña: <input type="password" name="password" maxlength="15" minlength="8" required></p>
+            	<input type="submit" value="Iniciar Sesión/Registrar">
+        	</form>
+		</div>
+	</header>
+	<main class="pagina-central">
+    <section class="columan-principal">
+      <h2>Ranking Musical</h2>
+      <div class="galeria-portadas">
+        <article><h3>TOP 1:</h3><img src="foto.jpg" alt="Top 1" width="100"></article>
+        <article><h3>TOP 2:</h3><img src="foto.jpg" alt="Top 2" width="100"></article>
+        <article><h3>TOP 3:</h3><img src="foto.jpg" alt="Top 3" width="100"></article>
+        <article><h3>TOP 4:</h3><img src="foto.jpg" alt="Top 4" width="100"></article>
+        <article><h3>TOP 5:</h3><img src="foto.jpg" alt="Top 5" width="100"></article>
+        <article><h3>TOP 6:</h3><img src="foto.jpg" alt="Top 6" width="100"></article>
+      </div>
+    </section>
+    <aside class="barra-lateral">
+      <h3>Actividad reciente</h3>
+      <ul>
+        <li>Escuchaste: TOP...</li>
+        <li>Agregaste: Playlist Favoritos</li>
+      </ul>
+    </aside>
+	</main>
+	<footer class="reproductor">
+	<div class="info-cancion">
+        <p><strong>Sin reproducir</strong> - Seleccione pista</p>
+    </div>
+    <div class="controles-reproduccion">
+        <button type="button" class="btn-control"><</button>
+        <button type="button" class="btn-control btn-play">▶</button>
+        <button type="button" class="btn-control">></button>
+    </div>
+    <div class="cierre-pagina">
+      <p>Sonora. Pagina web de alumnos UDP.</p>
+    </div>
+	</footer>
+</body>
+</html>

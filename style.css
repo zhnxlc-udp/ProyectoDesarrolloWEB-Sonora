@@ -1,0 +1,107 @@
+* { 
+   box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #C7FFF5;
+    font-family: system-ui, Arial, sans-serif; 
+    padding-bottom: 70px;
+}
+
+
+.barra-navegacion {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    align-items: center;            
+    padding: 15px 30px;
+    background-color: white; 
+    border-bottom: 1px solid #ddd;
+    gap: 15px;
+}
+
+.log-in form {
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+    font-size: 0.9rem;
+}
+
+.log-in p {
+    margin: 0;
+}
+
+
+.pagina-central {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 20px;
+}
+
+
+.galeria-portadas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.galeria-portadas article {
+    background: white;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 140px; 
+}
+
+
+.barra-lateral {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    height: fit-content;
+}
+
+.barra-lateral ul {
+    padding-left: 20px;
+}
+
+.barra-lateral li {
+    margin-bottom: 10px;
+}
+
+
+.reproductor {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #132437;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    margin: 0;
+}
+
+.info-cancion p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.controles-reproduccion {
+    display: flex;
+    gap: 15px;
+  
+}
+
+.cierre-pagina p {
+    font-size: 0.8rem;
+    color: #9cb4d8;
+    margin: 0; 
+    max-width: 250px; 
+    text-align: right;
+}
