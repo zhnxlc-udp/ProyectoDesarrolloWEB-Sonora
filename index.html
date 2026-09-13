@@ -9,23 +9,36 @@
 </head>
 
 <body>
-	<header class="barra-navegacion">
+	<header class="encabezado">
+        <!--Logo más nombre-->
 		<div class="logo">		
-			<img src="logo.png">
+			<img src="logonormal.png" alt="Logo Sonora">
 			<h1>Sonora | Reproductor musical</h1>
 		</div>
 
-    <!--ATAJOS DE INICIO DE SESIÓN-->
-		<div class="log-in">
+        <!--Inicio de sesión-->
+		<div class="login">
             <p>
                 Inicia sesión o regístrate <a href="login.html">aquí</a>
             </p>
-		</div>
+        </div>
 	</header>
 
+    <nav>
+        <a href="index.html">Inicio</a> | <a href="library.html">Biblioteca</a>            
+    </nav>
 
     <main class="pagina-central">
         <section class="columan-principal">
+            <!--BARRA DE BÚSQUEDA-->
+            <div class="barra-busqueda">
+                <p>
+                    <input type="text" placeholder="Busca tus canciones o artistas:">
+                    <button>Buscar</button>
+                </p>
+            </div>
+            
+            <!--TOP CANCIONES-->
             <h2>Top Musical de hoy:</h2>
             <div class="galeria-portadas">
                 <article>
@@ -110,6 +123,8 @@
                 </article>
             </div>
         </section>
+
+            <!--REPRODUCIENDO/PLAYLIST/COLA-->
             <aside class="barra-lateral">
                 <h3>Actividad reciente</h3>
                 <ul>
@@ -119,7 +134,7 @@
             </aside>
 	</main>
 
-
+    <!--Reproductor musical-->
 	<footer class="reproductor">
         <div class="info-cancion">
             <p><strong>Sin reproducir</strong> - Seleccione pista</p>
