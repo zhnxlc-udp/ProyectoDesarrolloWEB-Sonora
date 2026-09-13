@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/jpg" href="logo.png">
+	<link rel="stylesheet" href="style.css">
+	<title>INICIO | SONORA Web Player</title>
+</head>
+
+<body>
+	<header class="encabezado">
+        <!--Logo más nombre-->
+		<div class="logo">		
+			<img src="logonormal.png" alt="Logo Sonora">
+			<h1>Sonora | Reproductor musical</h1>
+		</div>
+
+        <!--Inicio de sesión-->
+		<div class="login">
+            <p>
+                Inicia sesión o regístrate <a href="login.html">aquí</a>
+            </p>
+        </div>
+	</header>
+
+    <nav>
+        <a href="index.html">Inicio</a> | <a href="library.html">Biblioteca</a>            
+    </nav>
+
+    <main class="pagina-central">
+        <section class="columan-principal">
+            <!--BARRA DE BÚSQUEDA-->
+            <div class="barra-busqueda">
+                <p>
+                    <input type="text" placeholder="Busca tus canciones o artistas:">
+                    <button>Buscar</button>
+                </p>
+            </div>
+            
+            <!--TOP CANCIONES-->
+            <h2>Biblioteca | Mis favoritos</h2>
+            <div class="galeria-portadas">
+                
+            </div>
+        </section>
+
+            <!--REPRODUCIENDO/PLAYLIST/COLA-->
+            <aside class="barra-lateral">
+                <h3>Actividad reciente</h3>
+                <ul>
+                    <li>Escuchaste: TOP...</li>
+                    <li>Agregaste: Playlist Favoritos</li>
+                </ul>
+            </aside>
+	</main>
+
+    <!--Reproductor musical-->
+	<footer class="reproductor">
+        <div class="info-cancion">
+            <p><strong>Sin reproducir</strong> - Seleccione pista</p>
+        </div>
+        <div class="controles-reproduccion">
+            <button type="button" class="btn-control"><</button>
+            <button type="button" class="btn-control btn-play">▶</button>
+            <button type="button" class="btn-control">></button>
+        </div>
+        <div class="cierre-pagina">
+            <p>Sonora. Pagina web de alumnos UDP.</p>
+        </div>
+	</footer>
+</body>
+</html>
