@@ -14,7 +14,7 @@ body {
     background-attachment: fixed;
 }
 
-.barra-navegacion {
+.encabezado {
     display: flex; 
     flex-wrap: wrap; 
     justify-content: space-between; 
@@ -32,15 +32,15 @@ body {
 }
 
 .logo img {
-    width: 60px;
+    width: 125px;
     height: auto;
 }
 
-.log-in {
+.login {
     text-align: right;
 }
 
-.log-in p {
+.login p {
     margin: 0;
 }
 
@@ -118,4 +118,36 @@ body {
     margin: 0; 
     max-width: 250px; 
     text-align: right;
+}
+
+
+.barra-busqueda input{
+    height: 35px;
+    width: 70%;
+    border:1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 5px;   
+}
+
+.barra-busqueda button{
+    width: 25%;
+    height: 35px;
+    padding:10px 20px;
+    background-color:#C7FFF5;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+nav{
+    background-color: #FFFFFF;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+nav a {
+    margin: 0 10px; 
 }
