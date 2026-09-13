@@ -1,31 +1,76 @@
-<!DOCTYPE html> <!--EQUIPO N°5-->
+<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Sonora | Reproductor musical</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="logo.png">
+	<link rel="stylesheet" href="style.css">
+	<title>Log-In | SONORA Web Player</title>
 </head>
-<body>
-    <header>
-        <h1 class="Logo">Sonora</h1>
-            <form style="text-align: center;">
-            <h2>Bienvenidos a Sonora</h2>
-            <h4>Inicie sesión en caso de tener su cuenta.</h4>
-            <h3>Iniciar Sesión</h3>
-            <p>Nombre de usuario: <input type="text" name="username" maxlength="15" minlength="6" required></p>
-            <p>Contraseña: <input type="password" name="password" maxlength="15" minlength="8" required></p>
-            <input type="submit" value="Registrar">
-        </form>
-    </header>
 
-<main>
-  <h2>Crear cuenta Sonora</h2>
-  <h3>¿No tienes cuenta sonora? Crea aquí tu cuenta:</h3>
-  
-</main> 
-<footer>
-  <p></p>
-  </footer>  
+<body>
+	<header class="barra-navegacion">
+		<div class="logo">		
+			<img src="logo.png" alt="Logo Sonora">
+			<h1>Sonora | Reproductor musical</h1>
+		</div>
+		
+		<nav class="menu-principal">
+			<a href="index.html">Volver al Inicio</a>
+		</nav>
+	</header>
+
+	<main class="pagina-central">
+        <!--INICIO DE SESIÓN-->
+        <section class="barra-lateral">
+            <h2>Iniciar Sesión</h2>
+            <p>Ingresa los datos de tu cuenta para poder iniciar sesión.</p>
+            <form action="index.html">
+                <label for="correo">Correo:</label><br>
+                <input type="email" id="correo" required style="width: 90%; margin-bottom: 10px;"><br>
+                
+                <label for="pass">Contraseña:</label><br>
+                <input type="password" id="pass" required style="width: 90%; margin-bottom: 20px;"><br>
+                
+                <button type="submit" style="padding: 5px 15px; cursor: pointer;">Ingresar</button>
+            </form>
+        </section>
+
+        <!--REGISTRO DE CUENTA-->
+        <section class="barra-lateral">
+            <h2>Crear Cuenta</h2>
+            <p>¿Aún no tienes cuenta? ¡Súmate a la comunidad de Sonora!<br>Ingresa los siguientes datos:</p>
+            <form action="index.html">
+                <label for="reg-nombre">Nombre de usuario:</label><br>
+                <input type="text" id="reg-nombre" required style="width: 90%; margin-bottom: 10px;"><br>
+
+                <label for="reg-nac">Fecha de nacimiento:</label><br>
+                <input type="date" id="reg-nac" required style="width: 90%; margin-bottom: 10px;"><br>
+
+                <label for="reg-correo">Correo:</label><br>
+                <input type="email" id="reg-correo" required style="width: 90%; margin-bottom: 10px;"><br>
+                
+                <label for="reg-pass">Contraseña:</label><br>
+                <input type="password" id="reg-pass" required style="width: 90%; margin-bottom: 20px;"><br>
+
+                <button type="submit" style="padding: 5px 15px; cursor: pointer;">Registrarse</button>
+            </form>
+        </section>
+
+	</main>
+
+	<footer class="reproductor">
+		<div class="info-cancion">
+			<p><strong>Sin reproducir</strong> - Seleccione pista</p>
+		</div>
+		<div class="controles-reproduccion">
+			<button type="button" class="btn-control"><</button>
+			<button type="button" class="btn-control btn-play">▶</button>
+			<button type="button" class="btn-control">></button>
+		</div>
+		<div class="cierre-pagina">
+		    <p>Sonora. Pagina web de alumnos UDP.</p>
+		</div>
+	</footer>
 </body>
 </html>
