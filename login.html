@@ -26,7 +26,7 @@
         <section class="barra-lateral">
             <h2>Iniciar Sesión</h2>
             <p>Ingresa los datos de tu cuenta para poder iniciar sesión.</p>
-            <form action="index.html">
+            <form id="form-login">
                 <label for="correo">Correo:</label><br>
                 <input type="email" id="correo" required style="width: 90%; margin-bottom: 10px;"><br>
                 
@@ -46,7 +46,7 @@
                 <input type="text" id="reg-nombre" required style="width: 90%; margin-bottom: 10px;"><br>
 
                 <label for="reg-nac">Fecha de nacimiento:</label><br>
-                <input type="date" id="reg-nac" required style="width: 90%; margin-bottom: 10px;"><br>
+                <input type="date" id="reg-nac" max="2026-01-01" required style="width: 90%; margin-bottom: 10px;"><br>
 
                 <label for="reg-correo">Correo:</label><br>
                 <input type="email" id="reg-correo" required style="width: 90%; margin-bottom: 10px;"><br>
@@ -73,5 +73,24 @@
 		    <p>Sonora. Pagina web de alumnos UDP.</p>
 		</div>
 	</footer>
+
+    <!--SCRIPT DE INICIO DE SESIÓN-->
+    <script>
+        document.getElementById('form-login').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const correo = document.getElementById('correo').value;
+            const password = document.getElementById('pass').value;
+
+            if (correo === "usuario@udp.cl" && password === "123456") {
+                localStorage.setItem('sesionIniciada', 'true');
+                localStorage.setItem('usuario', correo.split('@')[0]);
+                window.location.href = "index.html";
+            }
+            else {
+                alert("Usuario/contraseña incorrectos. | Use: usuario@udp.cl / 123456");
+            }
+        });
+    </script>
 </body>
 </html>

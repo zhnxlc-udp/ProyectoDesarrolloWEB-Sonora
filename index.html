@@ -34,7 +34,7 @@
             <div class="barra-busqueda">
                 <p>
                     <input type="text" placeholder="Busca tus canciones o artistas:">
-                    <button>Buscar</button>
+                    <button><img src="search.png" style="height: 25px; width: 25px;"></button>
                 </p>
             </div>
             
@@ -108,5 +108,25 @@
             <p>Sonora. Pagina web de alumnos UDP.</p>
         </div>
 	</footer>
+
+
+    <!--CONTINUIDAD DE SESIÓN INICIADA-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (localStorage.getItem('sesionIniciada') === 'true') {
+                const loginDiv = document.querySelector('.login');
+                const usuario = localStorage.getItem('usuario');
+                
+                loginDiv.innerHTML = `<p>Bienvenido, <strong>${usuario}</strong> | <a href="#" id="logout">Cerrar sesión</a></p>`;
+
+                document.getElementById('logout').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('sesionIniciada');
+                    localStorage.removeItem('usuario');
+                    window.location.reload();
+                });
+            }
+        });
+    </script>
 </body>
 </html>
