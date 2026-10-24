@@ -9,7 +9,7 @@ Queremos dar a los usuarios una plataforma confiable, con una interfaz que se si
 Somos estudiantes de 2do año de Ingeniería Civil en Informática y Telecomunicaciones en la Universidad Diego Portales.
 
 ## IMPORTANTE
-Integrante 1: Sebastián Vega
-Integrante 2: Sebastián Carvajal
-Repositorio: https://github.com/zhnxlc-udp/ProyectoDesarrolloWEB-Sonora
-Link a la instancia de AWS: http://54.83.227.75/
+Integrante 1: Sebastián Vega.
+Integrante 2: Sebastián Carvajal.
+Repositorio: https://github.com/zhnxlc-udp/ProyectoDesarrolloWEB-Sonora.
+Link a la instancia de AWS: http://54.83.227.75/.
