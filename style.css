@@ -55,7 +55,7 @@ body {
     padding: 20px;
 }
 
-.columan-principal, .barra-lateral {
+.columna-principal, .barra-lateral {
     background-color: rgba(255, 255, 255, 0.5); 
     border-radius: 8px;
     border: 1px solid #ddd;
@@ -63,7 +63,7 @@ body {
     flex: 1 1 250px;
 }
 
-.columan-principal {
+.columna-principal {
     padding: 20px;
 }
 
@@ -128,20 +128,24 @@ body {
 
 .barra-busqueda input{
     height: 35px;
-    width: 70%;
-    border:1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 5px;   
+    width: 85%;
+    border:2px solid #a3c2f0;
+    border-radius: 6px;
+    padding: 5px 10px;
+    outline: none;
+    font-family: Tahoma, sans-serif;
+    vertical-align: middle;
 }
 
 .barra-busqueda button{
-    width: 25%;
-    height: 35px;
-    padding:10px 20px;
+    width: 35px;
+    height: 35%;
+    background: linear-gradient(to bottom, #faf9f7 0%, #e3e1db 49%, #cdcac3 50%, #b5b2a9 100%);
+    padding: 5px;
     border:none;
-    background-color:#C7FFF5;
     border-radius:5px;
     cursor:pointer;
+    vertical-align: middle;
 }
 
 nav{
