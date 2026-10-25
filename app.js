@@ -60,11 +60,71 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p><strong>${cancion.titulo}</strong><br>por ${cancion.artista}</p>
                 <div class="controles-cancion">
                     <button type="button" class="btn-reproducir" data-titulo="${cancion.titulo}" data-artista="${cancion.artista}" title="Reproducir ahora">▶</button>
-                    <button type="button" title="Añadir a la cola">+ Cola</button>
+                    <button type="button" class="btn-cola" data-titulo="${cancion.titulo}" data-artista="${cancion.artista}" title="Añadir a la cola">+ Cola</button>
                     <button type="button" title="Añadir a favoritos">+ Favoritos</button>
                 </div>
             `;
             contenedorCatalogo.appendChild(article);
         });
     }
+
+    // Funciones para la cola de reproducción
+    let cola = JSON.parse(localStorage.getItem('colaReproduccion')) ?? [];
+    const listaCola = document.getElementById('lista-cola');
+
+    //renderizar la cola en html.
+    function mostrarCola(){
+        if (!listaCola) return;
+        listaCola.innerHTML = '';
+        if (cola.length === 0) {
+            listaCola.innerHTML= '<li>No hay canciones en la cola.</li>';
+            return;
+        }
+        cola.forEach((item, indice) => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                ${indice + 1}. ${item.titulo} - ${item.artista} 
+                <button type="button" class="btn-eliminar-cola" data-index="${indice}">X</button>
+                `;
+            listaCola.appendChild(li);
+        });
+    }
+
+    //reproducir canción y mostrar el nombre en la barra de reproducción
+    function reproducirCancion (titulo, artista) {
+        const textoReproductor = document.getElementById('texto-reproductor');
+        if (textoReproductor) {
+            textoReproductor.innerHTML = `<strong>${titulo}</strong> - ${artista}`;
+        }
+    }
+
+    //agregar canciones a la cola
+    function agregarACola (titulo, artista) {
+        cola.push({ titulo, artista });
+        localStorage.setItem('colaReproduccion', JSON.stringify(cola));
+        mostrarCola();
+    }
+
+    //eliminar canciones de la cola
+    function eliminarDeCola(indice) {
+        cola.splice(indice, 1); 
+        localStorage.setItem('colaReproduccion', JSON.stringify(cola));
+        mostrarCola();
+    }
+
+    mostrarCola();
+
+    //Escucha los clicks a los botones para hacer el evento correspondiente.
+    document.addEventListener('click', (e) => {
+        const titulo = e.target.getAttribute('data-titulo');
+        const artista = e.target.getAttribute('data-artista');
+
+        if (e.target.classList.contains('btn-reproducir')) {reproducirCancion(titulo, artista);}
+        if (e.target.classList.contains('btn-cola')) {agregarACola(titulo, artista);}
+        if (e.target.classList.contains('btn-eliminar-cola')) {
+            const indice = e.target.getAttribute('data-indice');
+            eliminarDeCola(indice);
+        }
+    });
+
 });
