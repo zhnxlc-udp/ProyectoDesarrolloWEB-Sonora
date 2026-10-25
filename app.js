@@ -33,4 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    //catálogo de canciones con un arreglo
+    const catalogoCanciones = [
+        { id: 1, titulo: "Stairway to Heaven", artista: "Led Zeppelin", genero: "Rock", duracion: "8:02", imagen:"id1.png" },
+        { id: 2, titulo: "Tren al Sur", artista: "Los Prisioneros", genero: "Rock", duracion: "3:45", imagen: "id2.jpg"}, 
+        { id: 3, titulo: "Prayer", artista: "Kendrick Lamar", genero: "Hip-Hop", duracion: "4:12", imagen: "id3.jpg"},
+        { id: 4, titulo: "Funeral", artista: "Mon Laferte", genero: "Pop", duracion: "4:28", imagen: "id4.jpg"}
+    ];
 });
