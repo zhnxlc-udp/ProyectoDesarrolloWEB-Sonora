@@ -4,3 +4,7 @@
 - Tren al Sur de Los Prisioneros
 - Prayer de Kendrick Lamar
 - Funeral de Mon Laferte
+- cigarette smoke de Olivia Rodrigo
+- Hate to See Your Heart Break de Paramore
+- The Story of Us de Taylor Swift
+- Thinking of You de Katy Perry
