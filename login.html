@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" type="image/png" href="logo.png">
 	<link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
 	<title>Log-In | SONORA Web Player</title>
 </head>
 
@@ -14,7 +15,6 @@
 			<img src="logonormal.png" alt="Logo Sonora">
 			<h1>Sonora | Reproductor musical</h1>
 		</div>
-		
 	</header>
 
     <nav>
@@ -22,10 +22,9 @@
     </nav>
 
 	<main class="pagina-central">
-        <!--INICIO DE SESIÓN-->
         <section class="barra-lateral">
             <h2>Iniciar Sesión</h2>
-            <p>Ingresa los datos de tu cuenta para poder iniciar sesión.</p>
+            <p>Ingresa los datos de tu cuenta (Prueba: usuario@udp.cl / 123456).</p>
             <form id="form-login">
                 <label for="correo">Correo:</label><br>
                 <input type="email" id="correo" required style="width: 90%; margin-bottom: 10px;"><br>
@@ -33,6 +32,7 @@
                 <label for="pass">Contraseña:</label><br>
                 <input type="password" id="pass" required style="width: 90%; margin-bottom: 20px;"><br>
                 
+                <p id="mensaje-login"></p>
                 <button type="submit" style="padding: 5px 15px; cursor: pointer;">Ingresar</button>
             </form>
         </section>
@@ -40,10 +40,10 @@
         <!--REGISTRO DE CUENTA-->
         <section class="barra-lateral">
             <h2>Crear Cuenta</h2>
-            <p>¿Aún no tienes cuenta? ¡Súmate a la comunidad de Sonora!<br>Ingresa los siguientes datos:</p>
-            <form action="index.html">
+            <p>¿Aún no tienes cuenta? ¡Súmate a la comunidad de Sonora!</p>
+            <form id="form-registro">
                 <label for="reg-nombre">Nombre de usuario:</label><br>
-                <input type="text" id="reg-nombre" required style="width: 90%; margin-bottom: 10px;"><br>
+                <input type="text" id="reg-nombre" required minlength="3" style="width: 90%; margin-bottom: 10px;"><br>
 
                 <label for="reg-nac">Fecha de nacimiento:</label><br>
                 <input type="date" id="reg-nac" max="2026-01-01" required style="width: 90%; margin-bottom: 10px;"><br>
@@ -52,45 +52,33 @@
                 <input type="email" id="reg-correo" required style="width: 90%; margin-bottom: 10px;"><br>
                 
                 <label for="reg-pass">Contraseña:</label><br>
-                <input type="password" id="reg-pass" required style="width: 90%; margin-bottom: 20px;"><br>
+                <input type="password" id="reg-pass" required minlength="6" style="width: 90%; margin-bottom: 10px;"><br>
 
+                <label for="reg-rol">Rol en Sonora:</label><br>
+                <select id="reg-rol" required style="width: 90%; margin-bottom: 20px;">
+                    <option value="Oyente">Oyente</option>
+                    <option value="Artista">Artista o editor</option>
+                    <option value="Administrador">Administrador</option>
+                </select><br>
+
+                <p id="mensaje-registro"></p>
                 <button type="submit" style="padding: 5px 15px; cursor: pointer;">Registrarse</button>
             </form>
         </section>
-
 	</main>
 
 	<footer class="reproductor">
 		<div class="info-cancion">
-			<p><strong>Sin reproducir</strong> - Seleccione pista</p>
+			<p id="texto-reproductor"><strong>Sin reproducir</strong> - Seleccione pista</p>
 		</div>
 		<div class="controles-reproduccion">
-			<button type="button" class="btn-control"><</button>
-			<button type="button" class="btn-control btn-play">▶</button>
-			<button type="button" class="btn-control">></button>
+			<button type="button" class="btn-control" id="btn-prev">&lt;</button>
+			<button type="button" class="btn-control btn-play" id="btn-play">▶</button>
+			<button type="button" class="btn-control" id="btn-next">&gt;</button>
 		</div>
 		<div class="cierre-pagina">
 		    <p>Sonora. Pagina web de alumnos UDP.</p>
 		</div>
 	</footer>
-
-    <!--SCRIPT DE INICIO DE SESIÓN-->
-    <script>
-        document.getElementById('form-login').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const correo = document.getElementById('correo').value;
-            const password = document.getElementById('pass').value;
-
-            if (correo === "usuario@udp.cl" && password === "123456") {
-                localStorage.setItem('sesionIniciada', 'true');
-                localStorage.setItem('usuario', correo.split('@')[0]);
-                window.location.href = "index.html";
-            }
-            else {
-                alert("Usuario/contraseña incorrectos. | Use: usuario@udp.cl / 123456");
-            }
-        });
-    </script>
 </body>
 </html>

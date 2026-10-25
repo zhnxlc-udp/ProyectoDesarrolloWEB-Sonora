@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" type="image/jpg" href="logo.png">
 	<link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
 	<title>INICIO | SONORA Web Player</title>
 </head>
 
@@ -29,51 +30,24 @@
     </nav>
 
     <main class="pagina-central">
-        <section class="columan-principal">
+        <section class="columna-principal">
             <!--BARRA DE BÚSQUEDA-->
             <div class="barra-busqueda">
                 <p>
-                    <input type="text" placeholder="Busca tus canciones o artistas:">
-                    <button><img src="search.png" style="height: 25px; width: 25px;"></button>
+                    <input type="text" id="input-busqueda" placeholder="Busca tus canciones, artistas o géneros:">
+                    <button type="button" id="boton-busqueda">
+                        <img src="search.png" alt="Buscar" style="height: 25px; width: 25px;">
+                    </button>
                 </p>
             </div>
             
             <!--TOP CANCIONES-->
             <h2>Top Musical de hoy:</h2>
-            <div class="galeria-portadas">
+            <p id="mensaje-catalogo"></p>
+            <div class="galeria-portadas" id="contenedor-catálogo">
                 <article>
                     <h3>TOP 1:</h3>
                     <img src="placeholder.jpg" alt="Top 1" width="100">
-                    <p><strong>CANCIÓN GENÉRICA</strong><br>por ARTISTA</p>
-                    <div class="controles-cancion">
-                        <button type="button" title="Reproducir ahora">▶</button>
-                        <button type="button" title="Añadir a la cola">+ Cola</button>
-                        <button type="button" title="Añadir a favoritos">+ Favoritos</button>
-                    </div>
-                </article>
-                <article>
-                    <h3>TOP 2:</h3>
-                    <img src="placeholder.jpg" alt="Top 2" width="100">
-                    <p><strong>CANCIÓN GENÉRICA</strong><br>por ARTISTA</p>
-                    <div class="controles-cancion">
-                        <button type="button" title="Reproducir ahora">▶</button>
-                        <button type="button" title="Añadir a la cola">+ Cola</button>
-                        <button type="button" title="Añadir a favoritos">+ Favoritos</button>
-                    </div>
-                </article>
-                <article>
-                    <h3>TOP 3:</h3>
-                    <img src="placeholder.jpg" alt="Top 3" width="100">
-                    <p><strong>CANCIÓN GENÉRICA</strong><br>por ARTISTA</p>
-                    <div class="controles-cancion">
-                        <button type="button" title="Reproducir ahora">▶</button>
-                        <button type="button" title="Añadir a la cola">+ Cola</button>
-                        <button type="button" title="Añadir a favoritos">+ Favoritos</button>
-                    </div>
-                </article>
-                <article>
-                    <h3>TOP 4:</h3>
-                    <img src="placeholder.jpg" alt="Top 4" width="100">
                     <p><strong>CANCIÓN GENÉRICA</strong><br>por ARTISTA</p>
                     <div class="controles-cancion">
                         <button type="button" title="Reproducir ahora">▶</button>
@@ -86,10 +60,16 @@
 
             <!--REPRODUCIENDO/PLAYLIST/COLA-->
             <aside class="barra-lateral">
+                <h3>Cola de reproducción</h3>
+                <ul id="lista-cola">
+                    <li>La cola está vacía.</li>
+                </ul>
+
+                <hr>
+
                 <h3>Actividad reciente</h3>
-                <ul>
-                    <li>Escuchaste: TOP...</li>
-                    <li>Agregaste: Playlist Favoritos</li>
+                <ul id="lista-historial">
+                    <li>Sin reproducciones recientes.</li>
                 </ul>
             </aside>
 	</main>
@@ -97,36 +77,18 @@
     <!--Reproductor musical-->
 	<footer class="reproductor">
         <div class="info-cancion">
-            <p><strong>Sin reproducir</strong> - Seleccione pista</p>
+            <p id="texto-reproductor"><strong>Sin reproducir</strong> - Seleccione pista</p>
         </div>
+
         <div class="controles-reproduccion">
-            <button type="button" class="btn-control"><</button>
-            <button type="button" class="btn-control btn-play">▶</button>
-            <button type="button" class="btn-control">></button>
+            <button type="button" class="btn-control" id="btn-prev">&lt;</button>
+            <button type="button" class="btn-control btn-play" id="btn-play">▶</button>
+            <button type="button" class="btn-control" id="btn-next">&gt;</button>
         </div>
+
         <div class="cierre-pagina">
             <p>Sonora. Pagina web de alumnos UDP.</p>
         </div>
 	</footer>
-
-
-    <!--CONTINUIDAD DE SESIÓN INICIADA-->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            if (localStorage.getItem('sesionIniciada') === 'true') {
-                const loginDiv = document.querySelector('.login');
-                const usuario = localStorage.getItem('usuario');
-                
-                loginDiv.innerHTML = `<p>Bienvenido, <strong>${usuario}</strong> | <a href="#" id="logout">Cerrar sesión</a></p>`;
-
-                document.getElementById('logout').addEventListener('click', function(e) {
-                    e.preventDefault();
-                    localStorage.removeItem('sesionIniciada');
-                    localStorage.removeItem('usuario');
-                    window.location.reload();
-                });
-            }
-        });
-    </script>
 </body>
 </html>
