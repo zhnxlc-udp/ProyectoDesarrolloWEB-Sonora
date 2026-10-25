@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/jpg" href="logo.png">
+	<link rel="stylesheet" href="style.css">
+	<script src="app.js" defer></script>
+	<title>BIBLIOTECA | SONORA Web Player</title>
+</head>
+
+<body>
+	<header class="encabezado">
+		<div class="logo">		
+			<img src="logonormal.png" alt="Logo Sonora">
+			<h1>Sonora | Reproductor musical</h1>
+		</div>
+
+		<div class="login">
+            <p>
+                Inicia sesión o regístrate <a href="login.html">aquí</a>
+            </p>
+        </div>
+	</header>
+
+    <nav>
+        <a href="index.html">Inicio</a> | <a href="library.html">Biblioteca</a>            
+    </nav>
+
+    <main class="pagina-central">
+        <section class="columan-principal">
+            <h2>Biblioteca | Mis favoritos</h2>
+            <p id="mensaje-favoritos"></p>
+            <div class="galeria-portadas" id="contenedor-favoritos">
+            </div>
+
+            <hr style="margin: 25px 0;">
+
+            <h2>Mis Playlists</h2>
+            <form id="form-playlist" style="margin-bottom: 15px;">
+                <label for="nombre-playlist">Nueva Playlist:</label>
+                <input type="text" id="nombre-playlist" placeholder="Ej: Rock para estudiar" required minlength="3">
+                <button type="submit">Crear Playlist</button>
+            </form>
+            <p id="mensaje-playlist"></p>
+            <div id="contenedor-playlists">
+            </div>
+        </section>
+
+        <aside class="barra-lateral">
+            <h3>Cola de reproducción</h3>
+            <ul id="lista-cola">
+                <li>La cola está vacía.</li>
+            </ul>
+
+            <hr>
+
+            <h3>Actividad reciente</h3>
+            <ul id="lista-historial">
+                <li>Sin reproducciones recientes.</li>
+            </ul>
+        </aside>
+	</main>
+
+	<footer class="reproductor">
+        <div class="info-cancion">
+            <p id="texto-reproductor"><strong>Sin reproducir</strong> - Seleccione pista</p>
+        </div>
+        <div class="controles-reproduccion">
+            <button type="button" class="btn-control" id="btn-prev">&lt;</button>
+            <button type="button" class="btn-control btn-play" id="btn-play">▶</button>
+            <button type="button" class="btn-control" id="btn-next">&gt;</button>
+        </div>
+        <div class="cierre-pagina">
+            <p>Sonora. Pagina web de alumnos UDP.</p>
+        </div>
+	</footer>
+</body>
+</html>

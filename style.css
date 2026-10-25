@@ -1,5 +1,5 @@
 * { 
-   box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
@@ -7,44 +7,82 @@ body {
     background-color: #C7FFF5;
     font-family: system-ui, Arial, sans-serif; 
     padding-bottom: 70px;
+    background-image: url("bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
-
-.barra-navegacion {
-    display: flex;
-    flex-wrap: wrap;
+.encabezado {
+    display: flex; 
+    flex-wrap: wrap; 
     justify-content: space-between; 
     align-items: center;            
-    padding: 15px 30px;
-    background-color: white; 
+    background: linear-gradient(to bottom, #245edb 0%, #3f8cf3 10%, #245edb 20%, #1941a5 100%);
     border-bottom: 1px solid #ddd;
     gap: 15px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    font-family: Tahoma, sans-serif;
+    color: white;
+    padding: 5px 7.5px;
 }
 
-.log-in form {
+.logo {
     display: flex;
     align-items: center;
-    gap: 15px; 
-    font-size: 0.9rem;
+    gap: 10px;
 }
 
-.log-in p {
+.logo img {
+    width: 125px;
+    height: auto;
+}
+
+.login {
+    text-align: right;
+}
+
+.login p {
     margin: 0;
 }
 
-
 .pagina-central {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 2rem;
     padding: 20px;
 }
 
+.columan-principal, .barra-lateral {
+    background-color: rgba(255, 255, 255, 0.5); 
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    height: fit-content;
+    flex: 1 1 250px;
+}
+
+.columan-principal {
+    padding: 20px;
+}
+
+.barra-lateral {
+    padding: 15px;
+}
+
+.barra-lateral ul {
+    padding-left: 20px;
+}
+
+.barra-lateral li {
+    margin-bottom: 10px;
+}
 
 .galeria-portadas {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 20px;
 }
 
 .galeria-portadas article {
@@ -56,29 +94,11 @@ body {
     width: 140px; 
 }
 
-
-.barra-lateral {
-    background-color: white;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    height: fit-content;
-}
-
-.barra-lateral ul {
-    padding-left: 20px;
-}
-
-.barra-lateral li {
-    margin-bottom: 10px;
-}
-
-
 .reproductor {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #132437;
+    background: linear-gradient(180deg, #8ae359 0%, #56c41a 49%, #43a30e 50%, #2f7806 100%);
     color: white;
     display: flex;
     justify-content: space-between;
@@ -87,21 +107,62 @@ body {
     margin: 0;
 }
 
+.controles-reproduccion {
+    display: flex;
+    gap: 15px;
+}
+
 .info-cancion p {
     margin: 0;
     font-size: 0.9rem;
 }
 
-.controles-reproduccion {
-    display: flex;
-    gap: 15px;
-  
-}
-
 .cierre-pagina p {
     font-size: 0.8rem;
-    color: #9cb4d8;
+    color: white;
     margin: 0; 
     max-width: 250px; 
     text-align: right;
+}
+
+
+.barra-busqueda input{
+    height: 35px;
+    width: 70%;
+    border:1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 5px;   
+}
+
+.barra-busqueda button{
+    width: 25%;
+    height: 35px;
+    padding:10px 20px;
+    border:none;
+    background-color:#C7FFF5;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+nav{
+    
+    padding: 10px 30px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    background: linear-gradient(to bottom, #f4f5f8 0%, #d8dae3 10%, #b8bccb 20%, #8c90a5 100%);
+}
+
+nav a {
+    margin: 0 10px; 
+    color: #1a1a24;
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 5px 7.5px;
+}
+
+nav a:hover{
+    background: linear-gradient(to bottom, #ffffff 0%, #c5c8d6 100%);
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8), 0 0 1px #8c90a5;
+  
 }
