@@ -39,7 +39,11 @@ document.addEventListener("DOMContentLoaded", () => {
         { id: 1, titulo: "Stairway to Heaven", artista: "Led Zeppelin", genero: "Rock", duracion: "8:02", imagen:"catalogoCanciones/id1.png" },
         { id: 2, titulo: "Tren al Sur", artista: "Los Prisioneros", genero: "Rock", duracion: "3:45", imagen: "catalogoCanciones/id2.jpg"}, 
         { id: 3, titulo: "Prayer", artista: "Kendrick Lamar", genero: "Hip-Hop", duracion: "4:12", imagen: "catalogoCanciones/id3.jpg"},
-        { id: 4, titulo: "Funeral", artista: "Mon Laferte", genero: "Pop", duracion: "4:28", imagen: "catalogoCanciones/id4.jpg"}
+        { id: 4, titulo: "Funeral", artista: "Mon Laferte", genero: "Pop", duracion: "4:28", imagen: "catalogoCanciones/id4.jpg"},
+        { id: 5, titulo: "cigarette smoke", artista: "Olivia Rodrigo", genero: "Pop", duracion: "4:28", imagen: "catalogoCanciones/id5.jpeg"},
+        { id: 6, titulo: "Hate to See Your Heart Break", artista: "Paramore", genero: "Pop", duracion: "4:28", imagen: "catalogoCanciones/id6.jpg"},
+        { id: 7, titulo: "The Story of Us (Taylor's Version)", artista: "Taylor Swift", genero: "Pop", duracion: "4:28", imagen: "catalogoCanciones/id7.jpg"},
+        { id: 8, titulo: "Thinking Of You", artista: "Katy Perry", genero: "Pop", duracion: "4:28", imagen: "catalogoCanciones/id8.jpg"}
     ];
 
     const contenedorCatalogo = document.getElementById('contenedor-catálogo');
