@@ -36,14 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //catálogo de canciones con un arreglo
     const catalogoCanciones = [
-        { id: 1, titulo: "Stairway to Heaven", artista: "Led Zeppelin", genero: "Rock", duracion: "8:02", imagen:"catalogoCanciones/id1.png" },
-        { id: 2, titulo: "Tren al Sur", artista: "Los Prisioneros", genero: "Rock", duracion: "3:45", imagen: "catalogoCanciones/id2.jpg"}, 
-        { id: 3, titulo: "Prayer", artista: "Kendrick Lamar", genero: "Hip-Hop", duracion: "4:12", imagen: "catalogoCanciones/id3.jpg"},
-        { id: 4, titulo: "Funeral", artista: "Mon Laferte", genero: "Pop", duracion: "4:28", imagen: "catalogoCanciones/id4.jpg"},
-        { id: 5, titulo: "cigarette smoke", artista: "Olivia Rodrigo", genero: "Pop", duracion: "4:28", imagen: "catalogoCanciones/id5.jpeg"},
-        { id: 6, titulo: "Hate to See Your Heart Break", artista: "Paramore", genero: "Pop", duracion: "4:28", imagen: "catalogoCanciones/id6.jpg"},
-        { id: 7, titulo: "The Story of Us (Taylor's Version)", artista: "Taylor Swift", genero: "Pop", duracion: "4:28", imagen: "catalogoCanciones/id7.jpg"},
-        { id: 8, titulo: "Thinking Of You", artista: "Katy Perry", genero: "Pop", duracion: "4:28", imagen: "catalogoCanciones/id8.jpg"}
+        { id: 1, titulo: "Stairway to Heaven", artista: "Led Zeppelin", genero: "Rock", duracion: "8:02", imagen:"catalogoCanciones/id1.png", archivo:"catalogoCanciones/audios/id1.mp3" },
+        { id: 2, titulo: "Tren al Sur", artista: "Los Prisioneros", genero: "Rock", duracion: "3:45", imagen: "catalogoCanciones/id2.jpg", archivo: "catalogoCanciones/audios/id2.mp3" }, 
+        { id: 3, titulo: "Prayer", artista: "Kendrick Lamar", genero: "Hip-Hop", duracion: "4:12", imagen: "catalogoCanciones/id3.jpg", archivo: "catalogoCanciones/audios/id3.mp3" },
+        { id: 4, titulo: "Funeral", artista: "Mon Laferte", genero: "Pop", duracion: "4:28", imagen: "catalogoCanciones/id4.jpg", archivo: "catalogoCanciones/audios/id4.mp3" },
+        { id: 5, titulo: "cigarette smoke", artista: "Olivia Rodrigo", genero: "Pop", duracion: "4:28", imagen: "catalogoCanciones/id5.jpeg", archivo: "catalogoCanciones/audios/id5.mp3" },
+        { id: 6, titulo: "Hate to See Your Heart Break", artista: "Paramore", genero: "Pop", duracion: "4:28", imagen: "catalogoCanciones/id6.jpg", archivo: "catalogoCanciones/audios/id6.mp3" },
+        { id: 7, titulo: "purple (happy version)", artista: "Olivia Rodrigo", genero: "Pop", duracion: "4:28", imagen: "catalogoCanciones/id5.jpeg", archivo: "catalogoCanciones/audios/id71.mp3" },
+        { id: 8, titulo: "Thinking Of You", artista: "Katy Perry", genero: "Pop", duracion: "4:28", imagen: "catalogoCanciones/id8.jpg", archivo: "catalogoCanciones/audios/id8.mp3" }
     ];
 
     const contenedorCatalogo = document.getElementById('contenedor-catálogo');
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <img src="${cancion.imagen}" alt="Top ${index + 1}" width="100">
                 <p><strong>${cancion.titulo}</strong><br>por ${cancion.artista}</p>
                 <div class="controles-cancion">
-                    <button type="button" class="btn-reproducir" data-titulo="${cancion.titulo}" data-artista="${cancion.artista}" title="Reproducir ahora">▶</button>
+                    <button type="button" class="btn-reproducir" data-titulo="${cancion.titulo}" data-artista="${cancion.artista}" data-archivo="${cancion.archivo}" title="Reproducir ahora">▶</button>
                     <button type="button" class="btn-cola" data-titulo="${cancion.titulo}" data-artista="${cancion.artista}" title="Añadir a la cola">+ Cola</button>
                     <button type="button" title="Añadir a favoritos">+ Favoritos</button>
                 </div>
@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Funciones para la cola de reproducción
     let cola = JSON.parse(localStorage.getItem('colaReproduccion')) ?? [];
+    let audioActual = new Audio();
     const listaCola = document.getElementById('lista-cola');
 
     //renderizar la cola en html.
@@ -91,11 +92,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     //reproducir canción y mostrar el nombre en la barra de reproducción
-    function reproducirCancion (titulo, artista) {
+    function reproducirCancion (titulo, artista, archivo) {
         const textoReproductor = document.getElementById('texto-reproductor');
         if (textoReproductor) {
             textoReproductor.innerHTML = `<strong>${titulo}</strong> - ${artista}`;
         }
+
+        audioActual.src = archivo;
+        audioActual.play();
+
+        const btnPlay = document.getElementById('btn-play');
+        if (btnPlay) {btnPlay.textContent = '⏸';}
     }
 
     //agregar canciones a la cola
@@ -119,10 +126,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const titulo = e.target.getAttribute('data-titulo');
         const artista = e.target.getAttribute('data-artista');
 
-        if (e.target.classList.contains('btn-reproducir')) {reproducirCancion(titulo, artista);}
+        if (e.target.classList.contains('btn-reproducir')) {
+            const archivo = e.target.getAttribute('data-archivo');
+            reproducirCancion(titulo, artista, archivo);
+        }
         if (e.target.classList.contains('btn-cola')) {agregarACola(titulo, artista);}
         if (e.target.classList.contains('btn-eliminar-cola')) {
-            const indice = e.target.getAttribute('data-indice');
+            const indice = e.target.getAttribute('data-index');
             eliminarDeCola(indice);
         }
     });
