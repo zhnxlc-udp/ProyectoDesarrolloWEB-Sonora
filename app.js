@@ -66,6 +66,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             `;
             contenedorCatalogo.appendChild(article);
+
+            //buscador de canciones en el catálogo funcional jeje
+            const inputBusqueda = document.getElementById('input-busqueda');
+            if (inputBusqueda) {
+                inputBusqueda.addEventListener('input', (e) => {
+                    const filtro = e.target.value.toLowerCase();
+                    const tarjetas = contenedorCatalogo.querySelectorAll('article');
+                    tarjetas.forEach(tarjeta => {
+                        const texto = tarjeta.innerText.toLowerCase();
+                        tarjeta.style.display = texto.includes(filtro) ? '' : 'none';
+                    });
+                });
+            }
         });
     }
 
