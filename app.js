@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p><strong>${cancion.titulo}</strong><br>por ${cancion.artista}</p>
                 <div class="controles-cancion">
                     <button type="button" class="btn-reproducir" data-titulo="${cancion.titulo}" data-artista="${cancion.artista}" data-archivo="${cancion.archivo}" title="Reproducir ahora">▶</button>
-                    <button type="button" class="btn-cola" data-titulo="${cancion.titulo}" data-artista="${cancion.artista}" title="Añadir a la cola">+ Cola</button>
+                    <button type="button" class="btn-cola" data-titulo="${cancion.titulo}" data-artista="${cancion.artista}" data-archivo="${cancion.archivo}" title="Añadir a la cola">+ Cola</button>
                     <button type="button" class="btn-favorito" data-titulo="${cancion.titulo}" data-artista="${cancion.artista}" title="Añadir a favoritos">+ Favoritos</button>
                     <button type="button" class="btn-add-playlist" data-titulo="${cancion.titulo}" data-artista="${cancion.artista}" title="Añadir a playlist">+ Playlist</button>
                 </div>
@@ -85,6 +85,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // Funciones para la cola de reproducción
     let cola = JSON.parse(localStorage.getItem('colaReproduccion')) ?? [];
     let audioActual = new Audio();
+    audioActual.addEventListener('ended', () => {
+        if (cola.length > 0) {
+            const siguiente = cola.shift(); // Saca la primera canción y la borra de la lista
+            localStorage.setItem('colaReproduccion', JSON.stringify(cola));
+            mostrarCola();
+            reproducirCancion(siguiente.titulo, siguiente.artista, siguiente.archivo);
+        } else {
+            const textoReproductor = document.getElementById('texto-reproductor');
+            if (textoReproductor) textoReproductor.innerHTML = '<strong>Fin de la cola</strong> - Seleccione pista';
+            document.getElementById('btn-play').textContent = '▶';
+        }
+    });
     let indiceCancionActual = -1;
     const listaCola = document.getElementById('lista-cola');
 
@@ -123,8 +135,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     //agregar canciones a la cola
-    function agregarACola (titulo, artista) {
-        cola.push({ titulo, artista });
+    function agregarACola (titulo, artista, archivo) {
+        cola.push({ titulo, artista, archivo });
         localStorage.setItem('colaReproduccion', JSON.stringify(cola));
         mostrarCola();
     }
@@ -150,7 +162,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         //agregar a cola
-        if (e.target.classList.contains('btn-cola')) {agregarACola(titulo, artista);}
+        if (e.target.classList.contains('btn-cola')) {
+            const archivo = e.target.getAttribute('data-archivo');
+            agregarACola(titulo, artista, archivo);
+        }
         
         //eliminar de cola
         if (e.target.classList.contains('btn-eliminar-cola')) {
@@ -205,10 +220,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 else {alert("Selección inválida o cancelada.");}
         }
         
-        //boton siguiente canción
-        if (e.target.id === 'btn-next' && indiceCancionActual !== -1) {
-            let sig = indiceCancionActual + 1 >= catalogoCanciones.length ? 0 : indiceCancionActual + 1;
-            reproducirCancion(catalogoCanciones[sig].titulo, catalogoCanciones[sig].artista, catalogoCanciones[sig].archivo);
+        //boton siguiente canción que verifica primero la cola (si tiene canciones sigue con la cola) y luego reproduce el resto del catálogo
+        if (e.target.id === 'btn-next') {
+            if (cola.length > 0) {
+                const siguiente = cola.shift();
+                localStorage.setItem('colaReproduccion', JSON.stringify(cola));
+                mostrarCola();
+                reproducirCancion(siguiente.titulo, siguiente.artista, siguiente.archivo);
+            } else if (typeof indiceCancionActual !== 'undefined' && indiceCancionActual !== -1) {
+                let sig = indiceCancionActual + 1 >= catalogoCanciones.length ? 0 : indiceCancionActual + 1;
+                reproducirCancion(catalogoCanciones[sig].titulo, catalogoCanciones[sig].artista, catalogoCanciones[sig].archivo);
+            } else {
+                alert('Selecciona una pista primero.');
+            }
         }
 
         //boton cancion anterior
