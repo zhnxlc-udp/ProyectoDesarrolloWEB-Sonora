@@ -118,6 +118,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    //HISTORIAL DE REPRODUCCION
+    let historial = JSON.parse(localStorage.getItem('historialUsuario')) ?? [];
+    const listaHistorial = document.getElementById('lista-historial');
+
+    function mostrarHistorial() {
+        if (!listaHistorial) return;
+        listaHistorial.innerHTML = '';
+        if (historial.length === 0) {
+            listaHistorial.innerHTML = '<li>Sin reproducciones recientes.</li>';
+            return;
+        }
+        historial.forEach((item) => {
+            const li = document.createElement('li');
+            li.innerHTML = ` ${item.titulo} - ${item.artista}`;
+            listaHistorial.appendChild(li);
+        });
+    }
+    mostrarHistorial();
+
     //reproducir canción y mostrar el nombre en la barra de reproducción
     function reproducirCancion (titulo, artista, archivo) {
         const textoReproductor = document.getElementById('texto-reproductor');
@@ -132,6 +151,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (btnPlay) {btnPlay.textContent = '⏸';}
 
         indiceCancionActual = catalogoCanciones.findIndex(c => c.archivo === archivo);
+
+        historial.unshift({ titulo, artista }); // Lo pone de primero
+        if (historial.length > 10) historial.pop(); // Borra el más viejo si hay más de 10
+        localStorage.setItem('historialUsuario', JSON.stringify(historial));
+        mostrarHistorial();
     }
 
     //agregar canciones a la cola
@@ -226,6 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const siguiente = cola.shift();
                 localStorage.setItem('colaReproduccion', JSON.stringify(cola));
                 mostrarCola();
+
                 reproducirCancion(siguiente.titulo, siguiente.artista, siguiente.archivo);
             } else if (typeof indiceCancionActual !== 'undefined' && indiceCancionActual !== -1) {
                 let sig = indiceCancionActual + 1 >= catalogoCanciones.length ? 0 : indiceCancionActual + 1;
