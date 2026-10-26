@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Funciones para la cola de reproducción
     let cola = JSON.parse(localStorage.getItem('colaReproduccion')) ?? [];
     let audioActual = new Audio();
+    let indiceCancionActual = -1;
     const listaCola = document.getElementById('lista-cola');
 
     //renderizar la cola en html.
@@ -117,6 +118,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const btnPlay = document.getElementById('btn-play');
         if (btnPlay) {btnPlay.textContent = '⏸';}
+
+        indiceCancionActual = catalogoCanciones.findIndex(c => c.archivo === archivo);
     }
 
     //agregar canciones a la cola
@@ -200,6 +203,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert(`Canción agregada a "${playlists[seleccion - 1].nombre}"`);
                 if (typeof mostrarPlaylists === 'function') mostrarPlaylists();} 
                 else {alert("Selección inválida o cancelada.");}
+        }
+        
+        //boton siguiente canción
+        if (e.target.id === 'btn-next' && indiceCancionActual !== -1) {
+            let sig = indiceCancionActual + 1 >= catalogoCanciones.length ? 0 : indiceCancionActual + 1;
+            reproducirCancion(catalogoCanciones[sig].titulo, catalogoCanciones[sig].artista, catalogoCanciones[sig].archivo);
+        }
+
+        //boton cancion anterior
+        if (e.target.id === 'btn-prev' && indiceCancionActual !== -1) {
+            let prev = indiceCancionActual - 1 < 0 ? catalogoCanciones.length - 1 : indiceCancionActual - 1;
+            reproducirCancion(catalogoCanciones[prev].titulo, catalogoCanciones[prev].artista, catalogoCanciones[prev].archivo);
         }
     });
 
