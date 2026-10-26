@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="controles-cancion">
                     <button type="button" class="btn-reproducir" data-titulo="${cancion.titulo}" data-artista="${cancion.artista}" data-archivo="${cancion.archivo}" title="Reproducir ahora">▶</button>
                     <button type="button" class="btn-cola" data-titulo="${cancion.titulo}" data-artista="${cancion.artista}" title="Añadir a la cola">+ Cola</button>
-                    <button type="button" title="Añadir a favoritos">+ Favoritos</button>
+                    <button type="button" class="btn-favorito" data-titulo="${cancion.titulo}" data-artista="${cancion.artista}" title="Añadir a favoritos">+ Favoritos</button>
                     <button type="button" class="btn-add-playlist" data-titulo="${cancion.titulo}" data-artista="${cancion.artista}" title="Añadir a playlist">+ Playlist</button>
                 </div>
             `;
@@ -216,6 +216,29 @@ document.addEventListener("DOMContentLoaded", () => {
             let prev = indiceCancionActual - 1 < 0 ? catalogoCanciones.length - 1 : indiceCancionActual - 1;
             reproducirCancion(catalogoCanciones[prev].titulo, catalogoCanciones[prev].artista, catalogoCanciones[prev].archivo);
         }
+
+        //agregar a favoritos
+        if (e.target.classList.contains('btn-favorito')) {
+            let favoritos = JSON.parse(localStorage.getItem('favoritosUsuario')) ?? [];
+            const titulo = e.target.getAttribute('data-titulo');
+            const artista = e.target.getAttribute('data-artista');
+            
+            if (!favoritos.some(f => f.titulo === titulo)) {
+                favoritos.push({ titulo, artista });
+                localStorage.setItem('favoritosUsuario', JSON.stringify(favoritos));
+                alert(`"${titulo}" añadida a favoritos.`);
+            } else {
+                alert('Ya está en favoritos.');
+            }
+        }
+
+        //eliminar de favoritos
+        if (e.target.classList.contains('btn-quitar-fav')) {
+            let favoritos = JSON.parse(localStorage.getItem('favoritosUsuario')) ?? [];
+            favoritos.splice(e.target.getAttribute('data-index'), 1);
+            localStorage.setItem('favoritosUsuario', JSON.stringify(favoritos));
+            mostrarFavoritos();
+        }
     });
 
     // PLAYLISTS
@@ -259,4 +282,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     mostrarPlaylists();
+
+    function mostrarFavoritos() {
+        const contenedorFavs = document.getElementById('contenedor-favoritos');
+        if (!contenedorFavs) return;
+        let favs = JSON.parse(localStorage.getItem('favoritosUsuario')) ?? [];
+        contenedorFavs.innerHTML = favs.length === 0 ? '<p>No hay favoritos aún.</p>' : '';
+        favs.forEach((fav, index) => {
+            contenedorFavs.innerHTML += `
+                <article style="border: 1px solid #ddd; padding: 5px; text-align: center; border-radius: 8px; width: 140px;">
+                    <p><strong>${fav.titulo}</strong><br>por ${fav.artista}</p>
+                    <button type="button" class="btn-quitar-fav" data-index="${index}" style="margin-top: 5px; padding: 2px 5px; cursor:pointer;">Quitar</button>
+                </article>`;
+        });
+    }
+    mostrarFavoritos();
 });
