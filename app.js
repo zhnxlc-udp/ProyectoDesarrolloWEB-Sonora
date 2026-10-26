@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <button type="button" class="btn-reproducir" data-titulo="${cancion.titulo}" data-artista="${cancion.artista}" data-archivo="${cancion.archivo}" title="Reproducir ahora">▶</button>
                     <button type="button" class="btn-cola" data-titulo="${cancion.titulo}" data-artista="${cancion.artista}" title="Añadir a la cola">+ Cola</button>
                     <button type="button" title="Añadir a favoritos">+ Favoritos</button>
+                    <button type="button" class="btn-add-playlist" data-titulo="${cancion.titulo}" data-artista="${cancion.artista}" title="Añadir a playlist">+ Playlist</button>
                 </div>
             `;
             contenedorCatalogo.appendChild(article);
@@ -126,15 +127,108 @@ document.addEventListener("DOMContentLoaded", () => {
         const titulo = e.target.getAttribute('data-titulo');
         const artista = e.target.getAttribute('data-artista');
 
+        //reproducir 
         if (e.target.classList.contains('btn-reproducir')) {
             const archivo = e.target.getAttribute('data-archivo');
             reproducirCancion(titulo, artista, archivo);
         }
+
+        //agregar a cola
         if (e.target.classList.contains('btn-cola')) {agregarACola(titulo, artista);}
+        
+        //eliminar de cola
         if (e.target.classList.contains('btn-eliminar-cola')) {
             const indice = e.target.getAttribute('data-index');
             eliminarDeCola(indice);
         }
+
+        //botón de play/pausa
+        if (e.target.id === 'btn-play') {
+            if (audioActual.src) { 
+                if (audioActual.paused) {
+                    audioActual.play();
+                    e.target.textContent = '⏸';
+                } else {
+                    audioActual.pause();
+                    e.target.textContent = '▶';
+                }
+            } else {
+                alert('No tienes nada para reproducir. Selecciona una canción del catálogo para poder reproducirla.');
+            }
+        }
+
+        //eliminar playlist completa
+        if (e.target.classList.contains('btn-eliminar-playlist')) {
+            const index = e.target.getAttribute('data-index');
+            playlists.splice(index, 1);
+            localStorage.setItem('playlistsUsuario', JSON.stringify(playlists));
+            mostrarPlaylists();
+        }
+
+        //quitar cancion especifica de la playlist
+        if (e.target.classList.contains('btn-quitar-cancion')) {
+            const pIndex = e.target.getAttribute('data-playlist');
+            const cIndex = e.target.getAttribute('data-cancion');
+            playlists[pIndex].canciones.splice(cIndex, 1);
+            localStorage.setItem('playlistsUsuario', JSON.stringify(playlists));
+            mostrarPlaylists();
+        }
+
+        //agregar canción a playlist existente
+        if (e.target.classList.contains('btn-add-playlist')) {
+            if (playlists.length === 0) return alert("Crea una playlist en la Biblioteca primero.");
+            
+            const listaOpciones = playlists.map((p, i) => `${i + 1}: ${p.nombre}`).join('\n');
+            const seleccion = prompt(`Ingresa el número de la playlist destino:\n${listaOpciones}`);
+            
+            if (seleccion && playlists[seleccion - 1]) {
+                playlists[seleccion - 1].canciones.push({ titulo, artista });
+                localStorage.setItem('playlistsUsuario', JSON.stringify(playlists));
+                alert(`Canción agregada a "${playlists[seleccion - 1].nombre}"`);
+                if (typeof mostrarPlaylists === 'function') mostrarPlaylists();} 
+                else {alert("Selección inválida o cancelada.");}
+        }
     });
 
+    // PLAYLISTS
+    let playlists = JSON.parse(localStorage.getItem('playlistsUsuario')) ?? [];
+    const formPlaylist = document.getElementById('form-playlist');
+    const contenedorPlaylists = document.getElementById('contenedor-playlists');
+    const errorPlaylist = document.getElementById('error-playlist');
+
+    function mostrarPlaylists() {
+        if (!contenedorPlaylists) return;
+        contenedorPlaylists.innerHTML = playlists.length === 0 ? '<p>No tienes playlists aún.</p>' : '';
+
+        playlists.forEach((lista, pIndex) => {
+            let cancionesHTML = lista.canciones && lista.canciones.length > 0 
+                ? lista.canciones.map((c, cIndex) => `<li>${c.titulo} <button class="btn-quitar-cancion" data-playlist="${pIndex}" data-cancion="${cIndex}">Quitar</button></li>`).join('')
+                : '<li>Vacía</li>';
+
+            contenedorPlaylists.innerHTML += `
+                <article style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+                    <h3>${lista.nombre} <button class="btn-eliminar-playlist" data-index="${pIndex}">Borrar Lista</button></h3>
+                    <ul>${cancionesHTML}</ul>
+                </article>
+            `;
+        });
+    }
+
+    if (formPlaylist) {
+        formPlaylist.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const inputNombre = document.getElementById('nombre-playlist');
+            if (inputNombre.value.trim().length < 3) {
+                errorPlaylist.style.display = 'block';
+            } else {
+                errorPlaylist.style.display = 'none';
+                playlists.push({ nombre: inputNombre.value.trim(), canciones: [] });
+                localStorage.setItem('playlistsUsuario', JSON.stringify(playlists));
+                mostrarPlaylists();
+                formPlaylist.reset();
+            }
+        });
+    }
+    
+    mostrarPlaylists();
 });

@@ -40,9 +40,12 @@
             <hr style="margin: 25px 0;">
 
             <h2>Mis Playlists</h2>
-            <form id="form-playlist" style="margin-bottom: 15px;">
+            <form id="form-playlist" style="margin-bottom: 15px;" novalidate>
                 <label for="nombre-playlist">Nueva Playlist:</label>
                 <input type="text" id="nombre-playlist" placeholder="Ej: Rock para estudiar" required minlength="3">
+                
+                <p id="error-playlist" style="color: red; display: none; font-size: 0.9em; margin-top: 5px; margin-bottom: 10px;">Debes ingresar un nombre válido (mínimo 3 caracteres) para crear tu playlist.</p>
+                
                 <button type="submit">Crear Playlist</button>
             </form>
 
