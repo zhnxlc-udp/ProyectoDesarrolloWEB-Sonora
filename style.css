@@ -12,6 +12,8 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .encabezado {
@@ -20,13 +22,12 @@ body {
     justify-content: space-between; 
     align-items: center;            
     background: linear-gradient(to bottom, #245edb 0%, #3f8cf3 10%, #245edb 20%, #1941a5 100%);
-    border-bottom: 1px solid #ddd;
     gap: 15px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     font-family: Tahoma, sans-serif;
     color: white;
-    padding: 5px 7.5px;
+    padding: 5px;
 }
 
 .logo {
@@ -52,23 +53,31 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
-    padding: 20px;
+    padding: 0px 20px 20px 20px;
+    height: calc(100vh - 260px);
 }
 
 .columna-principal, .barra-lateral {
     background-color: rgba(255, 255, 255, 0.5); 
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    height: fit-content;
-    flex: 1 1 250px;
+    border-radius: 12px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    
 }
 
 .columna-principal {
-    padding: 20px;
+    padding: 15px;
+    flex: 1 1 725px;
 }
 
 .barra-lateral {
     padding: 15px;
+    flex: 1 1 250px;
 }
 
 .barra-lateral ul {
@@ -139,11 +148,12 @@ body {
 
 nav{
     
-    padding: 10px 30px;
+    padding: 5px 20px;
     display: flex;
     justify-content: center; 
     align-items: center;
     background: linear-gradient(to bottom, #f4f5f8 0%, #d8dae3 10%, #b8bccb 20%, #8c90a5 100%);
+    margin: 0px 0px 15px 0px;
 }
 
 nav a {
