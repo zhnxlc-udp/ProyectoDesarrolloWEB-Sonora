@@ -37,8 +37,12 @@ body {
 }
 
 .logo img {
-    width: 125px;
+    width: 100px;
     height: auto;
+}
+
+.logo h1{
+    margin: 0;
 }
 
 .login {
@@ -54,7 +58,7 @@ body {
     flex-wrap: wrap;
     gap: 2rem;
     padding: 0px 20px 20px 20px;
-    height: calc(100vh - 260px);
+    height: calc(100vh - 170px);
 }
 
 .columna-principal, .barra-lateral {
@@ -96,11 +100,13 @@ body {
 
 .galeria-portadas article {
     background: white;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     border: 1px solid #ddd;
-    border-radius: 8px;
-    width: 140px; 
+    border-radius: 12px;
+    flex-grow: 1;      
+    min-width: 125px;  
+    max-width: 150px;  
 }
 
 .reproductor {
@@ -216,4 +222,26 @@ header a {
     cursor: pointer;
     font: inherit;
     padding: 0;
+}
+
+header button {
+    text-decoration: none;
+}
+
+nav button {
+    background: linear-gradient(to bottom, #f4f5f8 0%, #d8dae3 10%, #b8bccb 20%, #8c90a5 100%);
+    border: 1px solid #8c90a5;
+    margin: 0 10px; 
+    color: #1a1a24;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-family: Tahoma, sans-serif;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+}
+
+nav button:hover {
+    background: linear-gradient(to bottom, #ffffff 0%, #c5c8d6 100%);
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8), 0 0 5px #8c90a5;
 }
