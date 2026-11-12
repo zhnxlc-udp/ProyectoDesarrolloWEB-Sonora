@@ -1,4 +1,5 @@
 import { Sidebar } from './Sidebar';
+import { catalogoCanciones } from '../data';
 
 export function Home() {
   return (
@@ -16,22 +17,25 @@ export function Home() {
             {/* TOP CANCIONES */}
             <h2>☆ LO + NUEVO: ☆</h2>
             <p id="mensaje-catalogo"></p>
+
             <div className="galeria-portadas" id="contenedor-catálogo">
-                <article>
-                <h3>TOP 1:</h3>
-                <img src="/placeholder.jpg" alt="Top 1" width="100" />
-                <p><strong>CANCIÓN GENÉRICA</strong><br/>por ARTISTA</p>
-                <div className="controles-cancion">
-                    <button type="button" title="Reproducir ahora">▶</button>
-                    <button type="button" title="Añadir a la cola">+ Cola</button>
-                    <button type="button" title="Añadir a favoritos">+ Favoritos</button>
-                </div>
+            {catalogoCanciones.map((cancion, index) => (
+                <article key={cancion.id}>
+                    <h3>TOP {index + 1}:</h3>
+                    <img src={cancion.imagen} alt={cancion.titulo} width="100" />
+                    <p><strong>{cancion.titulo}</strong><br/>por {cancion.artista}</p>
+                
+                    <div className="controles-cancion">
+                        <button type="button" title="Reproducir ahora">▶</button>
+                        <button type="button" title="Añadir a la cola">+ Cola</button>
+                        <button type="button" title="Añadir a favoritos">+ Favoritos</button>
+                    </div>
                 </article>
+            ))}
             </div>
         </section>
 
         <Sidebar />
         </main>
     );
-
 }
