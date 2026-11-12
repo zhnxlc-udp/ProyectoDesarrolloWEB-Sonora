@@ -9,14 +9,18 @@ import { Reproductor } from './components/Reproductor';
 
 function App() {
   const [vistaActual, setVistaActual] = useState('home');
+  const [cancionActual, setCancionActual] = useState(null);
+
   return (
     <div className="contenedor-sonora">
       <Header cambiarVista={setVistaActual} />
       <Navbar cambiarVista={setVistaActual} />
-      {vistaActual === 'home' && <Home />}
+
+      {vistaActual === 'home' && <Home setCancionActual={setCancionActual} />}
       {vistaActual === 'library' && <Library />}
       {vistaActual === 'login' && <Login />}
-      <Reproductor />
+
+      <Reproductor cancionActual={cancionActual} />
     </div>
   );
 }
