@@ -1,7 +1,7 @@
 import { Sidebar } from './Sidebar';
 import { catalogoCanciones } from '../data';
 
-export function Home() {
+export function Home({ setCancionActual }) {
   return (
     <main className="pagina-central">
         <section className="columna-principal">
@@ -26,7 +26,7 @@ export function Home() {
                     <p><strong>{cancion.titulo}</strong><br/>por {cancion.artista}</p>
                 
                     <div className="controles-cancion">
-                        <button type="button" title="Reproducir ahora">▶</button>
+                        <button type="button" title="Reproducir ahora" onClick={() => setCancionActual(cancion)}>▶</button>
                         <button type="button" title="Añadir a la cola">+ Cola</button>
                         <button type="button" title="Añadir a favoritos">+ Favoritos</button>
                     </div>
